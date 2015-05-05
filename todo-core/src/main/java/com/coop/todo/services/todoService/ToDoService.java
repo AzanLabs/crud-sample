@@ -1,5 +1,8 @@
 package com.coop.todo.services.todoService;
 
-public class ToDoService {
+import com.coop.todo.modal.Todo;
 
+public interface ToDoService {
+	
+	public void createTodo(Todo todo);
 }
