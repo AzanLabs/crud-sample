@@ -1,0 +1,10 @@
+#untracked files
+
+
+.idea
+.project
+.classpath
+*.class
+
+target/
+.settings/
