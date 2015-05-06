@@ -1,8 +1,12 @@
-package com.coop.todo.basefactory;
+package com.coop.todo.Dao;
 
 import java.util.List;
 
-public interface BaseFactory {
+import com.mongodb.client.MongoDatabase;
+
+public interface BaseDao {
+	
+	public void setDS(MongoDatabase db);
 	
 	public Object Save(Object obj);
 	

@@ -1,4 +1,4 @@
-package com.coop.todo.basefactory;
+package com.coop.todo.Dao;
 
 import java.util.List;
 
@@ -6,12 +6,17 @@ import org.bson.Document;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
-public class BaseFactoryImpl implements BaseFactory {
-	
+public class BaseDaoImpl implements BaseDao {
 	
 	private MongoDatabase db;
-	protected String collectionName = "";
+	private String collectionName;
 	private MongoCollection<Document> coll;
+	
+	public BaseDaoImpl(MongoDatabase db, String collectionName){
+		this.db = db;
+		this.collectionName = collectionName;
+		this.coll = db.getCollection(this.collectionName);
+	}
 	
 	public Object Save(Object obj) {
 		 coll.insertOne(new Document("name","value"));
@@ -38,12 +43,9 @@ public class BaseFactoryImpl implements BaseFactory {
 		return null;
 	}
 
-	public MongoDatabase getDb() {
-		return db;
-	}
-
-	public void setDb(MongoDatabase db) {
+	public void setDS(MongoDatabase db) {
 		this.db = db;
+		
 	}
 
 }
