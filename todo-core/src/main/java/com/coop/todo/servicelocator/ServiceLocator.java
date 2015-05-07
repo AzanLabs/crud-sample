@@ -1,6 +1,6 @@
 package com.coop.todo.servicelocator;
 
-import com.coop.todo.Dao.TodoDao;
+import com.coop.todo.dao.TodoDao;
 import com.coop.todo.daofactory.DaoFactory;
 import com.coop.todo.modal.Todo;
 import com.coop.todo.service.TodoService;

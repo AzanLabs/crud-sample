@@ -1,6 +1,6 @@
 package com.coop.todo.service;
 
-import com.coop.todo.Dao.TodoDao;
+import com.coop.todo.dao.TodoDao;
 import com.coop.todo.modal.Todo;
 
 public class TodoServiceImpl implements TodoService {

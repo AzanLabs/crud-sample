@@ -1,7 +1,7 @@
 package com.coop.todo.daofactory;
 
-import com.coop.todo.Dao.TodoDao;
-import com.coop.todo.Dao.TodoDaoImpl;
+import com.coop.todo.dao.TodoDao;
+import com.coop.todo.dao.TodoDaoImpl;
 import com.coop.todo.datasource.DataSource;
 import com.coop.todo.modal.Todo;
 import com.mongodb.client.MongoDatabase;

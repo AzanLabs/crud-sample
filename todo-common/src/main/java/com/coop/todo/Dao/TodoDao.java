@@ -1,4 +1,4 @@
-package com.coop.todo.Dao;
+package com.coop.todo.dao;
 
 public interface TodoDao<T> extends BaseDao<T>{
 	
