@@ -2,20 +2,16 @@ package com.coop.todo.Dao;
 
 import java.util.List;
 
-import com.mongodb.client.MongoDatabase;
-
-public interface BaseDao {
+public interface BaseDao<T> {
 	
-	public void setDS(MongoDatabase db);
+	public T Save(T obj);
 	
-	public Object Save(Object obj);
+	public T update(T obj);
 	
-	public Object update(Object obj);
+	public T delete(T obj);
 	
-	public Object delete(Object obj);
+	public T findById(int id);
 	
-	public Object findById(int id);
-	
-	public List<Object> findByValue(String Key, Object value);
+	public List<T> findByValue(String Key, Object value);
 	
 }

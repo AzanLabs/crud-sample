@@ -3,14 +3,12 @@ package com.coop.todo.daofactory;
 import com.coop.todo.Dao.TodoDao;
 import com.coop.todo.Dao.TodoDaoImpl;
 import com.coop.todo.datasource.DataSource;
-import com.coop.todo.datasource.DataSourceImpl;
+import com.coop.todo.modal.Todo;
 import com.mongodb.client.MongoDatabase;
 
 public class DaoFactory {
 	
-	private DataSource ds = new DataSourceImpl();
-	
-	private MongoDatabase db = (MongoDatabase) ds.getDBInstance();
+	private MongoDatabase db = DataSource.getDBInstance();
 	
 	private static DaoFactory daoFactory = null;
 	
@@ -21,12 +19,12 @@ public class DaoFactory {
 		return daoFactory;
 	}
 	
-	public TodoDao getTodoDao() {
-		return new TodoDaoImpl(db);
+	public TodoDao<Todo> getTodoDao() {
+		return new TodoDaoImpl<Todo>(db);
 	}
 	
-	public void close(){
-		this.ds.close();
+	public static void close(){
+		DataSource.close();
 	}
 	
 }

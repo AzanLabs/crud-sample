@@ -1,12 +1,8 @@
 package com.coop.todo.servicelocator;
 
-import com.coop.todo.Dao.BaseDao;
 import com.coop.todo.Dao.TodoDao;
-import com.coop.todo.Dao.TodoDaoImpl;
 import com.coop.todo.daofactory.DaoFactory;
-import com.coop.todo.datasource.DataSource;
-import com.coop.todo.datasource.DataSourceImpl;
-import com.coop.todo.service.BaseService;
+import com.coop.todo.modal.Todo;
 import com.coop.todo.service.TodoService;
 import com.coop.todo.service.TodoServiceImpl;
 /**
@@ -36,7 +32,7 @@ public class ServiceLocator {
 	 * There will be at least one methods per service which handles its creation
 	 */
 	public TodoService getTodoService(){
-		TodoDao dao = DaoFactory.instance().getTodoDao();
+		TodoDao<Todo> dao = DaoFactory.instance().getTodoDao();
 		return new TodoServiceImpl(dao);
 	}
 	

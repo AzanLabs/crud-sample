@@ -1,6 +1,5 @@
 package com.coop.todo.Dao;
 
-public interface TodoDao extends BaseDao{
+public interface TodoDao<T> extends BaseDao<T>{
 	
-	public void check();
 }
