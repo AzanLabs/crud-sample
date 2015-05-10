@@ -2,7 +2,7 @@ package com.coop.todo.modal;
 
 public class Todo {
 	
-	private int id;
+	public String id;
 	private String title;
 	private String content;
 	private boolean isCompleted;
@@ -11,10 +11,10 @@ public class Todo {
 	public Todo(){
 		
 	}
-	public int getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public String getTitle() {

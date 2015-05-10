@@ -1,5 +1,7 @@
 package com.coop.todo.service;
 
+import java.util.List;
+
 import com.coop.todo.dao.TodoDao;
 import com.coop.todo.modal.Todo;
 
@@ -11,13 +13,10 @@ public class TodoServiceImpl implements TodoService {
 		this.dao = dao;
 	}
 
-	public Todo createToDo(String todoStr) throws Exception {
+	public Todo createTodo(Todo todo) throws Exception {
 		System.out.println("entering service");
-		Todo todo = null;
 		try{
-			todo = new Todo();
-			todo.setTitle(todoStr);
-			todo = this.dao.Save(todo);
+			todo = this.dao.SaveOne(todo);
 		} catch(Exception e) {
 			throw new Exception("exception caught on to do service "+e.getMessage());
 		} finally {
@@ -25,6 +24,21 @@ public class TodoServiceImpl implements TodoService {
 		}
 		return todo;
 	}
+
+	public Todo updateTodo(Todo todo) throws Exception {
+		try{
+			todo = this.dao.updateOne(todo);
+		} catch(Exception e) {
+			throw new Exception("exception caught on to do service "+e.getMessage());
+		}
+		return todo;
+	}
 	
+	public List<Todo> getAllTodo() {
+		return this.dao.findAll();
+	}
 	
+	public Todo find(String id) {
+		return this.dao.findById(id);
+	}
 }
