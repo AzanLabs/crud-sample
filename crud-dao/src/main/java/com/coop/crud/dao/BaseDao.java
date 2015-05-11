@@ -1,6 +1,8 @@
 package com.coop.crud.dao;
 
 import java.util.List;
+
+import com.coop.crud.exception.CustomException;
 /**
  * @author sankar
  * @param any Modal Object
@@ -12,11 +14,13 @@ public interface BaseDao<T> {
 	
 	public List<T> saveMany(List<T> objs);
 	
-	public T updateOne(T obj) throws IllegalArgumentException, IllegalAccessException, NoSuchFieldException, SecurityException;
+	public T updateOne(T obj) throws IllegalArgumentException, IllegalAccessException, NoSuchFieldException, SecurityException, CustomException;
 	
 	public List<T> updateMany(List<T> objs);
 	
-	public T findById(Object id);
+	public T findById(Object id) throws CustomException;
 	
 	public List<T> findAll();
+	
+	public T deleteOne(String id) throws CustomException;
 }

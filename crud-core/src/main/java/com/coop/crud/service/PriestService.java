@@ -2,15 +2,16 @@ package com.coop.crud.service;
 
 import java.util.List;
 
+import com.coop.crud.exception.CustomException;
 import com.coop.crud.modal.Priest;
 
 public interface PriestService extends BaseService{
 	
-	public Priest createTodo(Priest priest) throws Exception;
+	public Priest savePriestProfile(Priest priest);
 	
-	public Priest updateTodo(Priest priest) throws Exception;
+	public List<Priest> getAllPriests();
 	
-	public Priest find(String id);
+	public Priest updatePriest(Priest priest) throws CustomException;
 	
-	public List<Priest> getAllTodo();
+	public Priest deletePriest(String id) throws CustomException;
 }

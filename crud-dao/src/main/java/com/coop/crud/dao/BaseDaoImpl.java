@@ -5,8 +5,12 @@ import java.util.List;
 
 import org.bson.Document;
 
+import com.coop.crud.exception.CustomException;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
+import com.mongodb.client.model.FindOneAndUpdateOptions;
+import com.mongodb.client.model.ReturnDocument;
+import com.mongodb.client.result.UpdateResult;
 
 /**
  * @author sankar
@@ -32,8 +36,15 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 		return objs;
 	}
 
-	public T updateOne(T obj) throws IllegalArgumentException, IllegalAccessException, NoSuchFieldException, SecurityException {
-		this.coll.updateOne(Filters.eq("id", obj.getClass().getField("id").get(obj)), new Document("$set",obj));
+	public T updateOne(T obj) throws IllegalArgumentException, IllegalAccessException, NoSuchFieldException, SecurityException, CustomException {
+		FindOneAndUpdateOptions options = new FindOneAndUpdateOptions();
+		options.returnDocument(ReturnDocument.AFTER);
+		options.upsert(false);
+		obj = this.coll.findOneAndUpdate(Filters.eq("id", obj.getClass().getField("id").get(obj)), 
+				new Document("$set",obj), options);
+		if(obj == null){
+			throw new CustomException("Can't update. the object with the given id doesnot exists");
+		}
 		return obj;
 	}
 
@@ -42,13 +53,27 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 		return objs;
 	}
 
-	public T findById(Object id) {
-		return this.coll.find(Filters.eq("id",id)).first();
+	public T findById(Object id) throws CustomException {
+		T t = this.coll.find(Filters.eq("id",id)).first();
+		if(t == null){
+			throw new CustomException("The Object with the given id doesnot exists");
+		}
+		return t;
 	}
 
 	public List<T> findAll() {
 		List<T> list = new ArrayList<T>();
 		return this.coll.find().into(list);
+	}
+
+	@Override
+	public T deleteOne(String id) throws CustomException {
+		T t = null;
+		t = this.coll.findOneAndDelete(Filters.eq("id", id));
+		if(t == null){
+			throw new CustomException("Can't delete object , object does not exists");
+		}
+		return t;
 	}
 	
 	
