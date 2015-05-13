@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
- <meta charset="utf-8">
- <link rel="stylesheet" href="build/style.css">
- <script type="text/javascript" src="build/scripts.js">
+	<meta charset="utf-8">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.14/angular-route.js"></script>
+	<link rel="stylesheet" href="build/style.css">
+ 	<script type="text/javascript" src="build/scripts.js"></script>
 </head>
-<body>
-	<!-- this page is our app index page -->
+<body ng-app="myapp">
+	<ng-include src="'partials/temp.html'"></ng-include>
+</body>
 </html>

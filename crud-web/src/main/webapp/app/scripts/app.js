@@ -1,3 +1,1 @@
-/**
- here goes our app.js file
-*/
+var app = angular.module('myapp',[]);
