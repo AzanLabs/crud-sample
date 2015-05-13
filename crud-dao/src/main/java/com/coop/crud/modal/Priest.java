@@ -1,44 +1,86 @@
 package com.coop.crud.modal;
 
+import java.awt.Image;
+
 public class Priest {
 	
 	public String id;
-	private String title;
-	private String content;
-	private boolean isCompleted;
-	private boolean isTrash;
+	private String firstName;
+	private String lastName;
+	private String gender;
+	private String qualification;
+	private String currentChurch;
+	private String experience;
+	private String emailId;
+	private Long phoneNo;
+	private Image img;
+	private String about;
 	
-	public Priest(){
-		
-	}
 	public String getId() {
 		return id;
 	}
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getTitle() {
-		return title;
+	public String getFirstname() {
+		return firstName;
 	}
-	public void setTitle(String title) {
-		this.title = title;
+	public void setFirstname(String firstname) {
+		this.firstName = firstname;
 	}
-	public String getContent() {
-		return content;
+	public String getLastName() {
+		return lastName;
 	}
-	public void setContent(String content) {
-		this.content = content;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
-	public boolean isCompleted() {
-		return isCompleted;
+	public String getGender() {
+		return gender;
 	}
-	public void setCompleted(boolean isCompleted) {
-		this.isCompleted = isCompleted;
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
-	public boolean isTrash() {
-		return isTrash;
+	public String getQualification() {
+		return qualification;
 	}
-	public void setTrash(boolean isTrash) {
-		this.isTrash = isTrash;
+	public void setQualification(String qualification) {
+		this.qualification = qualification;
 	}
+	public String getCurrentChurch() {
+		return currentChurch;
+	}
+	public void setCurrentChurch(String currentChurch) {
+		this.currentChurch = currentChurch;
+	}
+	public String getExperience() {
+		return experience;
+	}
+	public void setExperience(String experience) {
+		this.experience = experience;
+	}
+	public String getEmailId() {
+		return emailId;
+	}
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
+	}
+	public Long getPhoneNo() {
+		return phoneNo;
+	}
+	public void setPhoneNo(Long phoneNo) {
+		this.phoneNo = phoneNo;
+	}
+	public Image getImg() {
+		return img;
+	}
+	public void setImg(Image img) {
+		this.img = img;
+	}
+	public String getAbout() {
+		return about;
+	}
+	public void setAbout(String about) {
+		this.about = about;
+	}
+	
 }
