@@ -1,6 +1,10 @@
 package com.coop.crud.dao.datasource;
 
+import java.util.Arrays;
+
 import com.mongodb.MongoClient;
+import com.mongodb.MongoCredential;
+import com.mongodb.ServerAddress;
 import com.mongodb.client.MongoDatabase;
 
 public class DataSource{
@@ -15,7 +19,10 @@ public class DataSource{
 	
 	public static MongoDatabase getDBInstance() {
 		MongoDatabase db = null;
+		MongoCredential credentials = MongoCredential.createCredential("admin", "parishpriestcrud", 
+				"mZPd7yM6981F".toCharArray());
 		if(mClient == null) {
+			//mClient = new MongoClient(new ServerAddress("localhost"), Arrays.asList(credentials));
 			mClient = new MongoClient(DataSource.host, DataSource.port);
 			db = mClient.getDatabase(DataSource.dbname);
 		}

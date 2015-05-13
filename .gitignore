@@ -8,3 +8,6 @@
 
 target/
 .settings/
+node_modules/
+build/
+

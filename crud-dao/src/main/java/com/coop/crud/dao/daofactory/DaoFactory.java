@@ -35,7 +35,7 @@ public class DaoFactory {
 			    CodecRegistries.fromCodecs(modalCodec),
 			    MongoClient.getDefaultCodecRegistry()
 			);
-		MongoCollection<Priest> coll = db.getCollection("todo", Priest.class).withWriteConcern(WriteConcern.ACKNOWLEDGED)
+		MongoCollection<Priest> coll = db.getCollection("priest", Priest.class).withWriteConcern(WriteConcern.ACKNOWLEDGED)
 					.withCodecRegistry(codecRegistry);
 		return new PriestDaoImpl<Priest>(coll);
 	}
