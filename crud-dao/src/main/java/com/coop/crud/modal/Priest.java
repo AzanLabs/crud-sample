@@ -13,7 +13,6 @@ public class Priest {
 	private String experience;
 	private String emailId;
 	private Long phoneNo;
-	private Image img;
 	private String about;
 	
 	public String getId() {
@@ -69,12 +68,6 @@ public class Priest {
 	}
 	public void setPhoneNo(Long phoneNo) {
 		this.phoneNo = phoneNo;
-	}
-	public Image getImg() {
-		return img;
-	}
-	public void setImg(Image img) {
-		this.img = img;
 	}
 	public String getAbout() {
 		return about;
