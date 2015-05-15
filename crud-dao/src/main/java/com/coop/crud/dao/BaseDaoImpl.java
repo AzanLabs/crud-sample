@@ -16,7 +16,7 @@ import com.mongodb.client.result.UpdateResult;
  * @author sankar
  * @param <T> any modal object
  */
-public class BaseDaoImpl<T> implements BaseDao<T> {
+public abstract class BaseDaoImpl<T> implements BaseDao<T> {
 	
 	protected MongoCollection<T> coll = null;
 	

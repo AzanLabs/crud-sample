@@ -31,8 +31,8 @@ public class ServiceLocator {
 	 * Below section contains methods for location and creation of services
 	 * There will be at least one methods per service which handles its creation
 	 */
-	public PriestService getTodoService(){
-		PriestDao<Priest> dao = DaoFactory.instance().getTodoDao();
+	public PriestService getPriestService(){
+		PriestDao<Priest> dao = DaoFactory.instance().getPriestDao();
 		return new PriestServiceImpl(dao);
 	}
 	

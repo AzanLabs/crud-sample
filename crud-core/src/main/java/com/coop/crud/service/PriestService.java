@@ -14,4 +14,6 @@ public interface PriestService extends BaseService{
 	public Priest updatePriest(Priest priest) throws CustomException;
 	
 	public Priest deletePriest(String id) throws CustomException;
+	
+	public boolean ifIdExists(String id) throws CustomException;
 }

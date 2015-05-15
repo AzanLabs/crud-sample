@@ -1,6 +1,5 @@
 package com.coop.crud.modal;
 
-import java.awt.Image;
 
 public class Priest {
 	
@@ -21,10 +20,10 @@ public class Priest {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getFirstname() {
+	public String getFirstName() {
 		return firstName;
 	}
-	public void setFirstname(String firstname) {
+	public void setFirstName(String firstname) {
 		this.firstName = firstname;
 	}
 	public String getLastName() {

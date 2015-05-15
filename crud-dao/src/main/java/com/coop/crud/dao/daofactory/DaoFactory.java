@@ -28,7 +28,7 @@ public class DaoFactory {
 		return daoFactory;
 	}
 	
-	public PriestDao<Priest> getTodoDao() {
+	public PriestDao<Priest> getPriestDao() {
 		Codec<Document> defaultDocumentCodec = MongoClient.getDefaultCodecRegistry().get(Document.class);
 		ModalCodec<Priest> modalCodec = new ModalCodec<Priest>(defaultDocumentCodec, Priest.class); 
 		CodecRegistry codecRegistry = CodecRegistries.fromRegistries(

@@ -49,4 +49,10 @@ public class PriestServiceImpl implements PriestService {
 		return priest;
 	}
 
+	@Override
+	public boolean ifIdExists(String id) throws CustomException {
+		return (this.dao.findById(id) != null);
+	}
+	
+	
 }

@@ -1,7 +1,5 @@
 package com.coop.crud.controller;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -23,32 +21,30 @@ import com.coop.crud.exception.CustomException;
 import com.coop.crud.modal.Priest;
 import com.coop.crud.service.PriestService;
 import com.coop.crud.servicelocator.ServiceLocator;
-import com.sun.jersey.core.header.FormDataContentDisposition;
-import com.sun.jersey.multipart.FormDataParam;
 
 @Path("/priest")
 public class PriestController {
 	private static final Logger log = LogManager.getLogger(PriestController.class.getName());
-	PriestService service = ServiceLocator.instance().getTodoService();
+	PriestService service = ServiceLocator.instance().getPriestService();
 	
 	@POST
-	@Path("/save")
-	@Consumes(MediaType.MULTIPART_FORM_DATA)
-	public Response savePriest(@FormDataParam("file") InputStream fileInput, 
-			@FormDataParam("file") FormDataContentDisposition content){
-		String filename = content.getFileName();
-		log.error("file name : "+filename);
-		String saveLocation = "/home/sankar/work/";
-		saveLocation = saveLocation.concat(filename);
-		try {
-			WebUtils.uploadFile(fileInput, saveLocation);
-		}catch (IOException e) {
-			e.printStackTrace();
-			log.error("error occ :"+filename);
-			return Response.serverError().build();
+	@Path("/create")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response savePriest(Priest priest){
+		try{
+			WebUtils.validateEntry(priest, "firstName", "gender", "currentChurch", "about");
+			Priest savedObj = service.savePriestProfile(priest);
+			return Response.ok(savedObj).build();
+		}catch(CustomException e){
+			log.error("custom exception {} ", e.getMessage());
+			return Response.status(412).entity(e.getMessage()).build();
+		}catch(Exception e){
+			log.error("custom exception {} ", e.getMessage());
+			return Response.serverError().entity(e.getMessage()).build();
 		}
-		return Response.ok(filename).build();
 	}
+
 	@GET
 	@Path("/all")
 	@Produces(MediaType.APPLICATION_JSON)
