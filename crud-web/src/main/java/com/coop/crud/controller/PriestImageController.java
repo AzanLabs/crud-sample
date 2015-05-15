@@ -1,19 +1,17 @@
 package com.coop.crud.controller;
 
-import java.awt.Image;
 import java.io.File;
 import java.io.InputStream;
-import java.net.URI;
-import java.net.URISyntaxException;
 
 import javax.activation.MimetypesFileTypeMap;
-import javax.swing.ImageIcon;
+import javax.servlet.ServletContext;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -29,9 +27,10 @@ import com.sun.jersey.multipart.FormDataParam;
 
 @Path("/image")
 public class PriestImageController {
-	
+	@Context ServletContext context;
 	private static final Logger log = LogManager.getLogger(PriestImageController.class.getName());
 	PriestService service = ServiceLocator.instance().getPriestService();
+	private String saveLocation = "./uploads/";
 	
 	@POST
 	@Path("/upload")
@@ -40,7 +39,7 @@ public class PriestImageController {
 			@FormDataParam("file") FormDataContentDisposition content, @FormDataParam("id") String id){
 		String path = null;
 		try{
-			String saveLocation = "/home/sankar/uploads/";
+			log.error("path "+saveLocation);
 			//checking for null values 
 			WebUtils.isNotNull(stream, content, id);
 			service.ifIdExists(id);
@@ -63,7 +62,7 @@ public class PriestImageController {
 	public Response getImage(@PathParam("id") String id){
 		File file = null;
 		try{
-			String saveLocation = "/home/sankar/uploads/";
+			log.error("path "+saveLocation);
 			WebUtils.isNotNull(id);
 			service.ifIdExists(id);
 			file = new File(saveLocation+id+".png");
