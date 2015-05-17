@@ -1,5 +1,5 @@
 var util = {
 	showAlertBox : function(){
-		console.log("Show Alert Box function called");
+		confirm("Are you sure you want to delete");
 	}
 }

@@ -4,7 +4,13 @@ var createPriestProfile = {
 		$("#createPriestProfile").addClass("active");
 		$("#parishManagement").css("color","#9d9d9d");
 		$(".content-holder").empty();
-		var priestProfieHTML = '<form class="form-horizontal" role="form">'
+		var priestProfieHTML = '<div class="posRelative"><form id="priest_form" class="form-horizontal" role="form">'
+								+'<div class="form-group">'
+								  +'<label class="control-label col-sm-2" for="idValue">Login ID:</label>'
+								  +'<div class="col-sm-6">'
+									+'<input type="text" class="form-control" id="idValue" placeholder="Enter your Login Id" required>'
+								  +'</div>'
+								+'</div>'
 								+'<div class="form-group">'
 								  +'<label class="control-label col-sm-2" for="firstName">First Name:</label>'
 								  +'<div class="col-sm-6">'
@@ -58,13 +64,55 @@ var createPriestProfile = {
 									+'</div>'
 								  +'</div>'
 								+'</div>'
-							  +'</form>';
+							  +'</form>'
+							  +'<div class="profileImageUpload">'
+									+'<div style="width:150px;height:150px;border:1px solid black;">'			
+										+'<img src="images/no-image-icon-md.png" alt="Profile Picture" style="max-width:100%;height:100%;" class="profilePicImageHolder"/>'
+									+'</div>'
+							  +'</div>'
+							  +'<div class="profileUploadButton">'
+								+'<div class="fileUpload btn btn-primary">'
+									+'<span>Change Image</span>'
+									+'<input id="uploadBtn" type="file" class="upload" onchange="readImageURL(this);" />'
+								+'</div>'
+								 /* +'<input type="file" id="profile_image" onchange="readImageURL(this);">' */
+							   +'</div>'
+							  +'</div>';
 		$(".content-holder").append(priestProfieHTML);
 	},
 	formValidation : function(){
 		var phoneNumber = $("#contactNumber").val();
-		if(isNaN(phoneNumber)){
-			alert("Please enter valid Phone Number");
-		}
+		var loginID = $("#idValue").val();
+		var firstName = $("#firstName").val();
+		var currentChurch = $("#currentChurch").val();
+		var about = "about";
+		var gender = "Male";
+		
+		var priest = {
+			id : loginID,
+			firstName : firstName,
+			currentChurch : currentChurch,
+			about : about,
+			gender : gender
+		};
+		
+		$.ajax({
+			type : "POST",
+			async : true,
+			dataType : "application/json",
+			url : "http://localhost:8080/crud/rest/priest/create",
+			data : priest,
+			xhrFields: {
+				withCredentials: true
+			  },
+			crossDomain: true,
+			success : function(resp){
+				console.log(resp.responseText);
+				debugger;
+			},
+			error : function(resp){
+				console.log(error);
+			}
+	});
 	}
 }

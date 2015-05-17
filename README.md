@@ -2,7 +2,7 @@
 
 Priest Modal :
 
-{
+(
 	"id":"1001",
 	"firstName":"sankar",
 	"lastName":"Nar..",
@@ -13,7 +13,7 @@ Priest Modal :
 	"emailId":"xxx@yyy.com",
 	"phoneNo":123456789,
 	"about":"..........................."
-}
+)
 
 EndPoints:
 

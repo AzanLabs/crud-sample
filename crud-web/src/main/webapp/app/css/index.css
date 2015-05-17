@@ -3,7 +3,7 @@
 }
 footer {
 	background-color: #222;
-	bottom: 5px;
+	bottom: 1px;
 	left: 5px;
 	position: fixed;
 	color: white;
@@ -13,4 +13,37 @@ footer {
 footer p {
 	margin-top: 10px;
 	margin-left: 5px;
+}
+
+.profileImageUpload {
+	position : absolute;
+	top : 1px;
+	right : 50px;
+}
+
+.posRelative {
+	position : relative;
+}
+
+.profileUploadButton {
+	position: absolute;
+	top: 160px;
+	right: 55px;
+}
+
+.fileUpload {
+    position: relative;
+    overflow: hidden;
+    margin: 10px;
+}
+.fileUpload input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
 }

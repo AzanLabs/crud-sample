@@ -32,9 +32,13 @@ var parishManagement = {
 			e.preventDefault();
 			parishManagementWebsite.init();
 		});
-		$("#createPriestProfileSubmit").click(function(e){
+		/* $("#createPriestProfileSubmit").click(function(e){
 			createPriestProfile.formValidation();
 			e.preventDefault();
+		}); */
+		$(document).on("click","#createPriestProfileSubmit",function(e){
+			debugger;
+			createPriestProfile.formValidation();
 		});
 		
 		// User Information edit
@@ -50,8 +54,21 @@ var parishManagement = {
 			util.showAlertBox();
 		});
 		
-		
+	}
+}
+//Profile Image Upload
+function readImageURL(input) {
+	if (input.files && input.files[0]) {
+		var reader = new FileReader();
+		reader.onload = function (e) {
+			$('.profilePicImageHolder').attr('src', e.target.result);
+		}
+		reader.readAsDataURL(input.files[0]);
 	}
 };
+
+function showAlertBox(){
+	alert("Submit");
+}
 
 
