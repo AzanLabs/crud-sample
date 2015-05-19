@@ -98,17 +98,12 @@ var createPriestProfile = {
 		
 		$.ajax({
 			type : "POST",
-			async : true,
-			dataType : "application/json",
+			dataType : "json",
+			contentType:'application/json;charset-UTF-8', //need to add content type
 			url : "http://localhost:8080/crud/rest/priest/create",
-			data : priest,
-			xhrFields: {
-				withCredentials: true
-			  },
-			crossDomain: true,
+			data : JSON.stringify(priest), //need to pass data as json string
 			success : function(resp){
 				console.log(resp.responseText);
-				debugger;
 			},
 			error : function(resp){
 				console.log(error);

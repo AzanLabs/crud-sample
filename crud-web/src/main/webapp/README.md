@@ -41,3 +41,5 @@ POST		.crud/rest/image/upload				multipart-form data			uploaded file name			uplo
 																							
 GET			./crud/rest/image/{priest_id}		nil							image/png					only png files are allowed. 
 																										returns image/png file
+
+
