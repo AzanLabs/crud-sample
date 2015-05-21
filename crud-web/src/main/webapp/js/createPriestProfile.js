@@ -25,9 +25,9 @@ var createPriestProfile = {
 								+'</div>'
 								+'<div class="form-group">'
 								  +'<label class="control-label col-sm-2" for="gender">Gender:</label>'
-								  +'<div class="col-sm-3">'
-									+'<label class="radio-inline"><input type="radio" name="optradio" required>Male</label>'
-									+'<label class="radio-inline"><input type="radio" name="optradio" required>Female</label>'
+								  +'<div class="col-sm-3" id="radioButtonSelected">'
+									+'<label class="radio-inline"><input type="radio" name="optradio" required class="radioClass" value="Male">Male</label>'
+									+'<label class="radio-inline"><input type="radio" name="optradio" class="radioClass" required value="Female">Female</label>'
 								  +'</div>'
 								+'</div>'
 								+'<div class="form-group">'
@@ -52,6 +52,18 @@ var createPriestProfile = {
 								  +'<label class="control-label col-sm-2" for="contactNumber">Phone:</label>'
 								  +'<div class="col-sm-6">'
 									+'<input type="tel" class="form-control" id="contactNumber" placeholder="Enter your Phone Number" required>'
+								  +'</div>'
+								+'</div>'
+								+'<div class="form-group">'
+								  +'<label class="control-label col-sm-2" for="experience">Experience:</label>'
+								  +'<div class="col-sm-6">'
+									+'<input type="text" class="form-control" id="experience" placeholder="Enter your Experience In Years" required>'
+								  +'</div>'
+								+'</div>'
+								+'<div class="form-group">'
+								  +'<label class="control-label col-sm-2" for="about">About Me:</label>'
+								  +'<div class="col-sm-6">'
+									+'<textarea class="form-control" rows="2" id="about"></textarea>'
 								  +'</div>'
 								+'</div>'
 								+'<div class="form-group">'        
@@ -81,32 +93,43 @@ var createPriestProfile = {
 		$(".content-holder").append(priestProfieHTML);
 	},
 	formValidation : function(){
-		var phoneNumber = $("#contactNumber").val();
-		var loginID = $("#idValue").val();
-		var firstName = $("#firstName").val();
-		var currentChurch = $("#currentChurch").val();
-		var about = "about";
-		var gender = "Male";
-		
+		var phoneNumber = $("#contactNumber").val(),
+			loginID = $("#idValue").val(),
+			firstName = $("#firstName").val(),
+			lastName = $("#lastName").val(),
+			currentChurch = $("#currentChurch").val(),
+			aboutYourSelf = $("#about").val(),
+			gender = sessionStorage.gender,
+			emailId = $("#email").val(),
+			qualificationOfPriest = $("#qualification").val(),
+			experience = $("#experience").val();
+			debugger;
 		var priest = {
 			id : loginID,
 			firstName : firstName,
+			lastName : lastName,
 			currentChurch : currentChurch,
-			about : about,
-			gender : gender
+			about : aboutYourSelf,
+			gender : gender,
+			emailId : emailId,
+			phoneNo : phoneNumber,
+			qualification : qualificationOfPriest,
+			experience : experience
 		};
-		
 		$.ajax({
 			type : "POST",
 			dataType : "json",
-			contentType:'application/json;charset-UTF-8', //need to add content type
+			contentType:'application/json', //need to add content type
 			url : "http://localhost:8080/crud/rest/priest/create",
 			data : JSON.stringify(priest), //need to pass data as json string
 			success : function(resp){
-				console.log(resp.responseText);
+				console.log(resp);
+				parishManagement.view.savedProfileResult(resp);
 			},
 			error : function(resp){
-				console.log(error);
+				debugger;
+				console.log(resp);
+				parishManagement.view.handleError(resp);
 			}
 	});
 	}
