@@ -5,7 +5,7 @@ var priest = {}; //fill it with priest data
 $.ajax({
     type : "POST",
     dataType : "json",
-    contentType : "application/json;charset-UTF-8",
+    contentType : "application/json;charset=UTF-8",
     url : './rest/priest/create',
     data : JSON.stringify(priest),
     success : function(resp){
@@ -35,7 +35,7 @@ $.ajax({
     type : "PUT",
     url : './rest/priest/update',
     dataType : "json",
-    contentType : "application/json;charset-UTF-8",
+    contentType : "application/json;charset=UTF-8",
     data : JSON.stringify(priest),
     success : function(resp){
         console.log(resp);
@@ -47,7 +47,7 @@ $.ajax({
 
 //to delete a priest
 var priestId = 1002 //id of priest
-var delUrl = './rest/priest/delete/'+id;
+var delUrl = './rest/priest/'+priestId;
 $.ajax({
     type : "DELETE",
     url : delUrl,
