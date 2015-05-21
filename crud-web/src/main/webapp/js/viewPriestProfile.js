@@ -4,6 +4,17 @@ var viewPriestProfile = {
 		$("#viewPriestProfile").addClass("active");
 		$("#parishManagement").css("color","#9d9d9d");
 		$(".content-holder").empty();
+		$.ajax({
+			type : "GET",
+			url : 'http://localhost:8080/crud/rest/priest/all',
+			success : function(resp){
+				console.log(resp);
+				viewPriestProfile.viewUserDetails(resp);
+			},
+			error : function(resp){
+				parishManagement.view.handleError(resp);
+			}
+		});
 		var viewProfileHTML = '<div>'
 								  +'<div>'
 										+'<div>'
@@ -178,5 +189,8 @@ var viewPriestProfile = {
 			$(".user1").css("display","none");
 			$(".user2").css("display","block");
 		}
+	},
+	viewUserDetails : function(result){
+		console.log("result Value",result);
 	}
 }

@@ -1,5 +1,8 @@
 var util = {
-	showAlertBox : function(){
-		confirm("Are you sure you want to delete");
+	showConfirmBox : function(message){
+		confirm(message);
+	},
+	showAlertBox : function (message){
+		alert(message);
 	}
 }

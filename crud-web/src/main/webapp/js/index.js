@@ -1,8 +1,11 @@
 
 $(document).ready(function(){
 	console.log("Jquery is Loading");
+	sessionStorage.clear();
 	parishManagement.init();
 });
+/*Global Variables */
+	CURRENT_PAGE = "parishWebSite";
  /*Global Boolean Flags */ 
 var PARISHMANAGEMENT = {
 	ISSLIDEDOWN : false,
@@ -10,37 +13,79 @@ var PARISHMANAGEMENT = {
 	ISUSERCLICKED : false
 };
 	
-var parishManagement = {
+parishManagement = {
 	init :function(){
-		parishManagementWebsite.init();
-		this.createEvents();
+		var pageName = this.urlChange();
+		this.setPageNavigation(pageName);
+		this.events.createEvents();
 	},
+	urlChange : function(){
+		var pageName = "";
+		if(window.location.hash !="" && window.location.hash != "undefined"){
+			var hashChange = window.location.hash.split("#");
+			pageName = hashChange[1];
+		} else {
+			pageName = "parishWebSite";
+		}
+		return pageName;
+	},
+	setPageNavigation : function(page){
+		CURRENT_PAGE = page;
+        this.loadPage(CURRENT_PAGE);
+        this.setPage(CURRENT_PAGE, CURRENT_PAGE, CURRENT_PAGE, "");
+	},
+	loadPage : function(page){
+		if(page == "home"){
+			homePage.init();
+		} else if(page == "createProfile"){
+			createPriestProfile.init();
+		} else if(page == "viewProfile"){
+			viewPriestProfile.init();
+		} else {
+			parishManagementWebsite.init();
+		}
+	},
+	setPage : function(page, url, title, data){
+		if (url == undefined) {
+            url = "parishWebSite";
+        }
+        data = data ? data : ""; // json data for the page
+        var urlWithHash = "#" + url;
+        var dataModified = {
+            "url": url,
+            "data": data
+        };
+        window.history.pushState(dataModified, title, urlWithHash);
+	}
+}
+parishManagement.events = {
 	createEvents : function(){
+		var pageName = "";
 		$("#homePage").click(function(e){
 			e.preventDefault();
-			homePage.init();
+			var pageName = "home";
+			parishManagement.setPageNavigation(pageName);
 		});
 		$("#createPriestProfile").click(function(e){
+			var pageName = "createProfile";
+			parishManagement.setPageNavigation(pageName);
 			e.preventDefault();
-			createPriestProfile.init();
 		});
 		$("#viewPriestProfile").click(function(e){
 			e.preventDefault();
-			viewPriestProfile.init();
+			var pageName = "viewProfile";
+			parishManagement.setPageNavigation(pageName);
 		});
 		$("#parishManagement").click(function(e){
 			e.preventDefault();
-			parishManagementWebsite.init();
-		});
-		/* $("#createPriestProfileSubmit").click(function(e){
-			createPriestProfile.formValidation();
-			e.preventDefault();
-		}); */
-		$(document).on("click","#createPriestProfileSubmit",function(e){
-			debugger;
-			createPriestProfile.formValidation();
+			var pageName = "parishWebSite";
+			parishManagement.setPageNavigation(pageName);
 		});
 		
+		$(document).on("click","#createPriestProfileSubmit",function(e){
+			createPriestProfile.formValidation();
+			e.preventDefault();
+		});
 		// User Information edit
 		$(document).on("click",".viewUserDetails",function(e){
 			var currentTarget = $(e.currentTarget);
@@ -51,9 +96,31 @@ var parishManagement = {
 		
 		//Deleting the User Information
 		$(document).on("click",".deletedICON",function(e){
-			util.showAlertBox();
+			var message = "Are you sure you want to delete";
+			util.showConfirmBox(message);
 		});
-		
+		/* $(document).on("change",".radioClass",function(e){
+		   alert($('input[name="optradio"]:checked', '.radioClass').val()); 
+		   var values = $('input[name="optradio"]:checked').find("radioClass").val();
+		   sessionStorage.gender = $('input[name="optradio"]:checked', '.radioClass').val();
+		   e.preventDefault();
+		}); */
+		$('input[type="radio"]').click(function(e){
+			sessionStorage.gender = $('input[name="optradio"]:checked').val();
+		})
+	}
+}
+
+parishManagement.view = {
+	savedProfileResult : function(result){
+		var message = "Your details are saved successfully,please view your details..!",pageName = "viewProfile";
+		util.showAlertBox(message);
+		debugger;
+		parishManagement.setPageNavigation(pageName);
+	},
+	handleError : function(result){
+		var message = "Service not available";
+		util.showAlertBox(message);
 	}
 }
 //Profile Image Upload
@@ -67,8 +134,5 @@ function readImageURL(input) {
 	}
 };
 
-function showAlertBox(){
-	alert("Submit");
-}
 
 
