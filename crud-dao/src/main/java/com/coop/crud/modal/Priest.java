@@ -11,7 +11,7 @@ public class Priest {
 	private String currentChurch;
 	private String experience;
 	private String emailId;
-	private Long phoneNo;
+	private String phoneNo;
 	private String about;
 	
 	public String getId() {
@@ -62,10 +62,10 @@ public class Priest {
 	public void setEmailId(String emailId) {
 		this.emailId = emailId;
 	}
-	public Long getPhoneNo() {
+	public String getPhoneNo() {
 		return phoneNo;
 	}
-	public void setPhoneNo(Long phoneNo) {
+	public void setPhoneNo(String phoneNo) {
 		this.phoneNo = phoneNo;
 	}
 	public String getAbout() {
